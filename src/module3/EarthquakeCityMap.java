@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Processing library
+import de.fhpotsdam.unfolding.providers.OpenStreetMap;
 import processing.core.PApplet;
 
 //Unfolding libraries
@@ -58,7 +59,7 @@ public class EarthquakeCityMap extends PApplet {
 		    earthquakesURL = "2.5_week.atom"; 	// Same feed, saved Aug 7, 2015, for working offline
 		}
 		else {
-			map = new UnfoldingMap(this, 200, 50, 700, 500, new Google.GoogleMapProvider());
+			map = new UnfoldingMap(this, 200, 50, 700, 500, new OpenStreetMap.OpenStreetMapProvider());
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
 			//earthquakesURL = "2.5_week.atom";
 		}
@@ -72,6 +73,10 @@ public class EarthquakeCityMap extends PApplet {
 	    //Use provided parser to collect properties for each earthquake
 	    //PointFeatures have a getLocation method
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
+		for (PointFeature earthquake : earthquakes) {
+			markers.add(new SimplePointMarker(earthquake.location));
+
+		}
 	    
 	    //TODO (Step 3): Add a loop here that calls createMarker (see below) 
 	    // to create a new SimplePointMarker for each PointFeature in 
