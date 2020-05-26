@@ -32,6 +32,14 @@ public class CityMarker extends SimplePointMarker {
 	/**
 	 * Implementation of method to draw marker on the map.
 	 */
+
+	//My Triangle Parameters
+	//d side of an isosceles triangle with its top down
+	int d =10;
+	float dx = d / 2;
+	float dy = (float) Math.sqrt(d * d + dx * dx);
+
+
 	public void draw(PGraphics pg, float x, float y) {
 		// Save previous drawing style
 		pg.pushStyle();
@@ -45,6 +53,8 @@ public class CityMarker extends SimplePointMarker {
 		// e.g. pg.rect(x, y, 10, 10) will draw a 10x10 square
 		// whose upper left corner is at position x, y
 		// Check out the processing documentation for more methods
+		pg.fill(255, 226, 64);
+		pg.triangle(x, y,  x-dx, y-dy,x+dx,y-dy);
 		
 		
 		// Restore previous drawing style

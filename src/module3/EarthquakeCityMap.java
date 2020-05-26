@@ -124,7 +124,7 @@ public class EarthquakeCityMap extends PApplet {
     }
 
     public void draw() {
-        background(204, 153, 204);
+        background(9, 16, 38);
         map.draw();
         addKey();
 
@@ -134,9 +134,9 @@ public class EarthquakeCityMap extends PApplet {
     // TODO: Implement this method to draw the key
     private void addKey() {
         noStroke();
-        fill(204, 102, 204);
+        fill(45, 51, 64);
         rect(30, 50, 150, 370, 10);
-        fill(204, 51, 204);
+        fill(46, 154, 166);
         rect(35, 100, 140, 30, 10);
         rect(35, 145, 140, 30, 10);
         rect(35, 190, 140, 30, 10);
@@ -157,7 +157,7 @@ public class EarthquakeCityMap extends PApplet {
         textSize(16);
         fill(255);
         textAlign(LEFT);
-        text("MAGNITUDE", 70, 90);
+        text("MAGNITUDE", 60, 80);
         textSize(14);
         text("     > 5", 70, 122);
         text("from 4 to 5", 70, 167);
