@@ -1,0 +1,23 @@
+{
+  "user": [ {
+    "name": "Nikolay",
+    "age": 5,
+    "city": "Moscow",
+    "knowledge": [
+      "Java",
+      "SQL",
+      "Algorithms"
+    ]
+  },
+    {
+      "name": "Rim ",
+      "age": 15,
+      "city": "Kirov",
+      "knowledge": [
+        "C++",
+        "MySQL",
+        "Management"
+      ]
+    }
+    ]
+}
