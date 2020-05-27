@@ -34,7 +34,7 @@ public class CityMarker extends SimplePointMarker {
 	 */
 
 	//My Triangle Parameters
-	//d side of an isosceles triangle with its top down
+	//d is side of an isosceles triangle with its top down
 	int d =10;
 	float dx = d / 2;
 	float dy = (float) Math.sqrt(d * d + dx * dx);

@@ -1,4 +1,6 @@
 package myJson;
+// Вытащим из json файла в Map сведения о популяции в каждом городе записаном в
+// формате String и отсортируем по количеству жителей в порядке убывания от большего к меньшему
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -6,40 +8,46 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        String filename = "city-data.json";//test "my.json";
+        getPopulation(filename);
+
+    }
+
+    public static void getPopulation(String filename) {
         ClassLoader classLoader = new Main().getClass().getClassLoader();
-        String filename = "city-data.json";//"my.json";
-
         File file = new File(classLoader.getResource(filename).getFile());
-
         JSONParser jsonParser = new JSONParser();
-
+        HashMap<String, Double> cityPopulation = new HashMap<>();
         try {
             FileReader fileReader = new FileReader(file.getAbsolutePath());
             Object object = jsonParser.parse(fileReader);
             JSONObject jsonObject = (JSONObject) object;
             JSONArray countyArr = (JSONArray) jsonObject.get("features");
             Iterator usersItr = countyArr.iterator();
-            Map cityPopulation = new HashMap();
-
             while (usersItr.hasNext()) {
                 JSONObject user = (JSONObject) usersItr.next();
                 JSONObject properties = (JSONObject) user.get("properties");
-
-                System.out.println((properties.get("name") + " - " + properties.get("population") + " mln"));
-//                cityPopulation.keySet().add(properties.get("name"));
-//                System.out.println(cityPopulation.get());
-
+                cityPopulation.put(
+                        (String) properties.get("name"),
+                        Double.parseDouble((String) properties.get("population"))
+                );
 
             }
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        System.out.println();
+        cityPopulation.entrySet().stream()
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .forEach(System.out::println);
+
     }
 
 }

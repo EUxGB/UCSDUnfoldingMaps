@@ -158,18 +158,18 @@ public class EarthquakeCityMap extends PApplet {
 
 	
 	
-	// Checks whether this quake occurred on land.  If it did, it sets the 
+	// Checks whether this quake occurred on land.  If it did, it sets the
 	// "country" property of its PointFeature to the country where it occurred
 	// and returns true.  Notice that the helper method isInCountry will
 	// set this "country" property already.  Otherwise it returns false.
 	private boolean isLand(PointFeature earthquake) {
 		
 		
-		// Loop over all the country markers.  
-		// For each, check if the earthquake PointFeature is in the 
-		// country in m.  Notice that isInCountry takes a PointFeature
-		// and a Marker as input.  
-		// If isInCountry ever returns true, isLand should return true.
+//		 Loop over all the country markers.
+//		 For each, check if the earthquake PointFeature is in the
+//		 country in m.  Notice that isInCountry takes a PointFeature
+//		 and a Marker as input.
+//		 If isInCountry ever returns true, isLand should return true.
 		for (Marker m : countryMarkers) {
 			// TODO: Finish this method using the helper method isInCountry
 			
@@ -190,36 +190,36 @@ public class EarthquakeCityMap extends PApplet {
 	{
 		// TODO: Implement this method
 		// One (inefficient but correct) approach is to:
-		//   Loop over all of the countries, e.g. using 
+		//   Loop over all of the countries, e.g. using
 		//        for (Marker cm : countryMarkers) { ... }
-		//        
+		//
 		//      Inside the loop, first initialize a quake counter.
 		//      Then loop through all of the earthquake
 		//      markers and check to see whether (1) that marker is on land
-		//     	and (2) if it is on land, that its country property matches 
+		//     	and (2) if it is on land, that its country property matches
 		//      the name property of the country marker.   If so, increment
 		//      the country's counter.
-		
+
 		// Here is some code you will find useful:
-		// 
+		//
 		//  * To get the name of a country from a country marker in variable cm, use:
 		//     String name = (String)cm.getProperty("name");
 		//  * If you have a reference to a Marker m, but you know the underlying object
 		//    is an EarthquakeMarker, you can cast it:
 		//       EarthquakeMarker em = (EarthquakeMarker)m;
-		//    Then em can access the methods of the EarthquakeMarker class 
+		//    Then em can access the methods of the EarthquakeMarker class
 		//       (e.g. isOnLand)
-		//  * If you know your Marker, m, is a LandQuakeMarker, then it has a "country" 
+		//  * If you know your Marker, m, is a LandQuakeMarker, then it has a "country"
 		//      property set.  You can get the country with:
 		//        String country = (String)m.getProperty("country");
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 	// helper method to test whether a given earthquake is in a given country
-	// This will also add the country property to the properties of the earthquake 
+	// This will also add the country property to the properties of the earthquake
 	// feature if it's in one of the countries.
 	// You should not have to modify this code
 	private boolean isInCountry(PointFeature earthquake, Marker country) {
