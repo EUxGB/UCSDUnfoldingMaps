@@ -3,7 +3,7 @@ package MGTUball;
 import javafx.scene.chart.XYChart;
 
 import java.io.*;
-import java.lang.*;
+
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -34,40 +34,45 @@ class Maps<String, Number> {
         return N;
     }
 
-    Map<java.lang.String, java.lang.Number> getMGTUMap(java.lang.String path) throws IOException {
+    Map<java.lang.String, java.lang.Number> getMap(java.lang.String path) throws IOException {
         File file = new File(path);
         System.out.println(file.getAbsolutePath());
         Map<java.lang.String, java.lang.Number> map = new TreeMap<>();
-        Reader lnr =
+        Reader reader =
                 new BufferedReader(
                         new FileReader(file));
         java.lang.String s;
         while (true) {
-            s = ((BufferedReader) lnr).readLine();
+            s = ((BufferedReader) reader).readLine();
             if (s == null)
                 break;
 
-            Pattern pattern = Pattern.compile("Сумма баллов:");
+//            Pattern pattern = Pattern.compile("Сумма баллов:");
+            Pattern pattern = Pattern.compile("\\s\\d{3}\\b");
             Matcher matcher = pattern.matcher(s);
+
             while (matcher.find()) {
-                java.lang.String data = s.substring(s.length() - 4).replace(";", "");
+//                java.lang.String data = s.substring(s.length() - 4).replace(";", "");
+                java.lang.String data = s.substring(matcher.start(), matcher.end()).replace(";", "");
                 if (map.get(data) == null) {
                     map.put(data, 1);
                 } else map.put(data, map.get(data).intValue() + 1);
             }
         }
-        map.remove("лов:");
-        map.remove("лиц:");
-        map.remove("умма");
+//        map.remove("лов:");
+//        map.remove("лиц:");
+//        map.remove("умма");
+//        map.remove("");
         System.out.println(map);
         return map;
     }
 
-    Map<String, Integer> AddMGTUMap(Map<String, Number> map1, Map<String, Number> map2) {
+
+    Map<String, Integer> AddMap(Map<String, Number> map1, Map<String, Number> map2) {
         Map<String, Integer> map3 = new TreeMap<>();
         for (Map.Entry<String, Number> entry : map1.entrySet()) {
             if (map3.get(entry.getKey()) == null) {
-                map3.put(entry.getKey(),  (Integer) entry.getValue());
+                map3.put(entry.getKey(), (Integer) entry.getValue());
             } else {
                 map3.put(entry.getKey(), (Integer) entry.getValue());
             }
@@ -76,17 +81,18 @@ class Maps<String, Number> {
 
         for (Map.Entry<String, Number> entry : map2.entrySet()) {
             if (map3.get(entry.getKey()) == null) {
-                map3.put(entry.getKey(),(Integer) entry.getValue());
+                map3.put(entry.getKey(), (Integer) entry.getValue());
             } else {
 
-                        map3.put(entry.getKey(), (Integer) entry.getValue()+map3.get(entry.getKey()));
+                map3.put(entry.getKey(), (Integer) entry.getValue() + map3.get(entry.getKey()));
 //                (Integer) map2.get(entry.getKey())+
             }
         }
-            System.out.println(map3.entrySet());
+        System.out.println(map3.entrySet());
 
 
         return map3;
+
     }
 
 }
