@@ -1,8 +1,5 @@
 package module4;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
 import de.fhpotsdam.unfolding.data.GeoJSONReader;
@@ -11,12 +8,16 @@ import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.AbstractShapeMarker;
 import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.marker.MultiMarker;
-import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.providers.OpenStreetMap;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import parsing.ParseFeed;
 import processing.core.PApplet;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
@@ -100,6 +101,7 @@ public class EarthquakeCityMap extends PApplet {
 		//     STEP 3: read in earthquake RSS feed
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    quakeMarkers = new ArrayList<Marker>();
+
 	    
 	    for(PointFeature feature : earthquakes) {
 		  //check if LandQuake
@@ -170,11 +172,11 @@ public class EarthquakeCityMap extends PApplet {
 //		 country in m.  Notice that isInCountry takes a PointFeature
 //		 and a Marker as input.
 //		 If isInCountry ever returns true, isLand should return true.
+
 		for (Marker m : countryMarkers) {
+			if(isInCountry(earthquake, m)) return true;
 			// TODO: Finish this method using the helper method isInCountry
-			
 		}
-		
 		
 		// not inside any country
 		return false;
@@ -212,6 +214,27 @@ public class EarthquakeCityMap extends PApplet {
 		//  * If you know your Marker, m, is a LandQuakeMarker, then it has a "country"
 		//      property set.  You can get the country with:
 		//        String country = (String)m.getProperty("country");
+		Map<String, Integer> map = new HashMap<>();
+		int i = 1;
+		for (Marker cm : countryMarkers) {
+			String name = (String) cm.getProperty("name");
+			for (Marker m: quakeMarkers)
+				String country = (String) m.getProperty("country");
+			map.put(name,i++);
+
+
+
+
+//
+//			if(name==)
+//			EarthquakeMarker em = (EarthquakeMarker) m;
+//			System.out.println(name);
+
+		}
+//		EarthquakeMarker em = (EarthquakeMarker) m;
+//		String country = (String) m.getProperty("country");
+		System.out.println(map);
+		System.out.println(map.size());
 
 
 	}
