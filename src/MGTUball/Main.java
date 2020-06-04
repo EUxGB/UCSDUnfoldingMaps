@@ -8,7 +8,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.poi.ss.formula.functions.T;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,15 +29,26 @@ public class Main extends Application {
         String path4 = "data\\prikaz\\МГТУ_ГА_80.txt";
         Map<String, Number> map1, map2, map3, map4;
         Map<String, Number> addMap;
-        Map<String, Number> map0 = new TreeMap<>();
+        Map<java.lang.String, java.lang.Number> map0 =  new TreeMap<>();
+        Map<String, Number> map00 = new TreeMap<>();
+        Map<String, Number> map000 = new TreeMap<>();
 
         Maps maps = new Maps();
         int N = 0, N1 = 0, N2 = 0, N3 = 0;
 
         for (int i = 200; i <= 320; i++) {
-            map0.put(Integer.toString(i), 0);
+            map0.put(Integer.toString(i), i*2);
         }
+        for (int i = 200; i <= 320; i++) {
+            map00.put(Integer.toString(i), 10);
+        }
+        for (int i = 200; i <= 320; i++) {
+            map000.put(Integer.toString(i),i);
+        }
+        System.out.println(map0);
+//        map00 = map0;
         map1 = maps.getMap(path1);
+
         map2 = maps.getMap(path2);
        // addMap = maps.AddMap(map1, map2);
         map3 = maps.getMap(path3);
@@ -46,6 +59,14 @@ public class Main extends Application {
         N2 = maps.getN(map3);
         N3 = maps.getN(map4);
 
+          System.out.println(map0.entrySet().iterator().next().getValue().getClass());
+          System.out.println(map1.entrySet().iterator().next().getValue().getClass());
+          System.out.println(map2.entrySet().iterator().next().getValue().getClass());
+          System.out.println(map3.entrySet().iterator().next().getValue().getClass());
+          System.out.println(map4.entrySet().iterator().next().getValue().getClass());
+         System.out.println(map00.entrySet().iterator().next().getValue().getClass());
+        System.out.println(map000.entrySet().iterator().next().getValue().getClass());
+
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Кол-во абитуриентов");
@@ -53,12 +74,17 @@ public class Main extends Application {
 
         BarChart<String, Number> barChart = new BarChart<String, Number>(xAxis, yAxis);
 
+
         barChart.getData().add(maps.getXYChart(map0));
+        barChart.getData().add(maps.getXYChart(map1));
+        barChart.getData().add(maps.getXYChart(map000));
+        //        barChart.getData().add(maps.getXYChart(map2));
 //        barChart.getData().add(maps.getXYChart(map3));
-//        barChart.getData().add(maps.getXYChart(map1));
-//        barChart.getData().add(maps.getXYChart(map2));
-        barChart.getData().add(maps.getXYChart(map4));
+//        barChart.getData().add(maps.getXYChart(map4));
+
+//        barChart.getData().add(maps.getXYChart(map00));
 //        barChart.getData().add(maps.getXYChart(addMap));
+
 
         VBox vbox = new VBox(barChart);
         primaryStage.setTitle("В МГТУ поступить можно на бюджет!");
