@@ -57,6 +57,8 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	
 
 	// calls abstract method drawEarthquake and then checks age and draws X if needed
+
+
 	public void draw(PGraphics pg, float x, float y) {
 		// save previous styling
 		pg.pushStyle();
@@ -80,6 +82,13 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// But this is up to you, of course.
 	// You might find the getters below helpful.
 	private void colorDetermine(PGraphics pg) {
+		float depth = getDepth();
+		if (depth >= THRESHOLD_INTERMEDIATE) {
+			pg.fill(0, 0, 255);
+			if (depth >= THRESHOLD_DEEP) {
+				pg.fill(0, 255, 0);
+			}
+		} else pg.fill(0, 255, 0);
 		//TODO: Implement this method
 	}
 	
@@ -90,6 +99,10 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	
 	public float getMagnitude() {
 		return Float.parseFloat(getProperty("magnitude").toString());
+	}
+
+	public float getAge() {
+		return Float.parseFloat(getProperty("title").toString());
 	}
 	
 	public float getDepth() {

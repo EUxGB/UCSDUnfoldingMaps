@@ -31,7 +31,17 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		
 		// HINT: Notice the radius variable in the EarthquakeMarker class
 		// and how it is set in the EarthquakeMarker constructor
-		
+
+		int d = 10;
+		float magnitude = getMagnitude();
+		if(magnitude>=THRESHOLD_LIGHT) {
+			pg.ellipse(x, y, d+5, d+5);
+			if(magnitude>=THRESHOLD_MODERATE) {
+				pg.ellipse(x, y, d+10, d+10);
+			}
+		} else {
+			pg.ellipse(x, y, d, d);}
+		System.out.println(getAge());
 		// TODO: Implement this method
 		
 	}

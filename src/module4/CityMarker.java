@@ -16,7 +16,7 @@ public class CityMarker extends SimplePointMarker {
 	
 	// The size of the triangle marker
 	// It's a good idea to use this variable in your draw method
-	public static final int TRI_SIZE = 5;  
+	public static final int TRI_SIZE = 13;
 	
 	public CityMarker(Location location) {
 		super(location);
@@ -35,9 +35,10 @@ public class CityMarker extends SimplePointMarker {
 
 	//My Triangle Parameters
 	//d is side of an isosceles triangle with its top down
-	int d =10;
-	float dx = d / 2;
-	float dy = (float) Math.sqrt(d * d + dx * dx);
+
+	float dx = TRI_SIZE / 2;
+	float dy = (float) (dx*Math.tanh(Math.toRadians(30)));
+	float dyUp = (float) (TRI_SIZE / 2 * Math.sqrt(3)-dy);
 
 
 	public void draw(PGraphics pg, float x, float y) {
@@ -53,8 +54,8 @@ public class CityMarker extends SimplePointMarker {
 		// e.g. pg.rect(x, y, 10, 10) will draw a 10x10 square
 		// whose upper left corner is at position x, y
 		// Check out the processing documentation for more methods
-		pg.fill(255, 226, 64);
-		pg.triangle(x, y,  x-dx, y-dy,x+dx,y-dy);
+		pg.fill(150,30,30);
+		pg.triangle(x-dx, y+dy,  x+0, y-dyUp,x+dx,y+dy);
 		
 		
 		// Restore previous drawing style
