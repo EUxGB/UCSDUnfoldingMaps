@@ -1,0 +1,52 @@
+@startuml
+
+abstract class AbstractMarker
+
+class SimplePointMarker
+
+class CityMarker{
+public CityMarker(Location location)
+void draw(PGraphics pg, float x, float y)
+String getCity()
+String getCountry()
+float getPopulation()
+}
+
+abstract class EarthquakeMarker{
+abstract void drawEarthquake(PGraphics pg, float x, float y)
+void draw(PGraphics pg, float x, float y)
+void colorDetermine(PGraphics pg)
+ float getMagnitude()
+ float getDepth()
+ String getTitle()
+ float getRadius()
+ boolean isOnLand()
+}
+
+class LandQuakeMarker{
+void drawEarthquake(PGraphics pg, float x, float y)
+String getCountry()
+
+}
+class OceanQuakeMarker{
+void drawEarthquake(PGraphics pg, float x, float y)
+}
+
+
+class EarthquakeCityMap{
+void setup()
+void addKey
+void draw()
+boolean isLand(PointFeature earthquake)
+void printQuakes()
+boolean isInCountry(PointFeature earthquake, Marker country)
+}
+
+SimplePointMarker <--AbstractMarker
+CityMarker <-- SimplePointMarker
+EarthquakeMarker <-- SimplePointMarker
+LandQuakeMarker <-- EarthquakeMarker
+OceanQuakeMarker <-- EarthquakeMarker
+EarthquakeCityMap <-- PApplet
+
+@enduml

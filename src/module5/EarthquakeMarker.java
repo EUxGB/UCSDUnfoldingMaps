@@ -69,7 +69,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 		
 		// IMPLEMENT: add X over marker if within past day		
 		String age = getStringProperty("age");
-		if ("Past Hour".equals(age) || "Past Day".equals(age)) {
+		if ("Past Hour".equals(age) ) {  //|| "Past Day".equals(age)
 			
 			pg.strokeWeight(2);
 			int buffer = 2;

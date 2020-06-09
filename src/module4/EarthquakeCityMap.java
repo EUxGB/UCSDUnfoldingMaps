@@ -67,6 +67,7 @@ public class EarthquakeCityMap extends PApplet {
 
     public void setup() {
         // (1) Initializing canvas and map tiles
+
         size(900, 700, OPENGL);
         if (offline) {
             map = new UnfoldingMap(this, 200, 50, 650, 600, new MBTilesMapProvider(mbTilesString));
@@ -133,7 +134,7 @@ public class EarthquakeCityMap extends PApplet {
         textAlign(LEFT, CENTER);
         textSize(14);
         text("Earthquake Key", 50, 75);
-        int triangleSize = 15;                      // размер треуголника
+        int triangleSize = 15;                      // размер треугольника
         int triangleX1 = 50;                        // x1 - первая точка треугольника
         int triangleY1 = 110 + triangleSize / 2;    // y1 - первая точка треугольника
                                                     // y2 = y1;
@@ -224,7 +225,7 @@ public class EarthquakeCityMap extends PApplet {
         Map<String, Integer> map = new TreeMap<>();
         int oceanQuakes = 0;
         for (Marker m : quakeMarkers) {
-            System.out.println(m.getProperty("title"));
+            //System.out.println(m.getProperty("title"));
             String country = (String) m.getProperty("country");
             if (country != null) map.put(country, map.get(country) == null ? 1 : map.get(country) + 1);
             else ++oceanQuakes;

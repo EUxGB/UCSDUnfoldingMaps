@@ -41,7 +41,11 @@ public class LandQuakeMarker extends EarthquakeMarker {
 			}
 		} else {
 			pg.ellipse(x, y, d, d);}
-		System.out.println(getAge());
+
+		if(getAge().equals("Past Day")){
+		pg.line(x-d/2,y-d/2,x+d/2,y+d/2);
+		pg.line(x-d/2,y+d/2,x+d/2,y-d/2);
+		}
 		// TODO: Implement this method
 		
 	}

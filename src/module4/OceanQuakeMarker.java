@@ -1,6 +1,7 @@
 package module4;
 
 import de.fhpotsdam.unfolding.data.PointFeature;
+import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import processing.core.PGraphics;
 
 /** Implements a visual marker for ocean earthquakes on an earthquake map
@@ -17,7 +18,7 @@ public class OceanQuakeMarker extends EarthquakeMarker {
 		// setting field in earthquake marker
 		isOnLand = false;
 	}
-	
+
 
 	@Override
 	public void drawEarthquake(PGraphics pg, float x, float y) {
@@ -31,13 +32,18 @@ public class OceanQuakeMarker extends EarthquakeMarker {
 		int d = 10;
 		float magnitude = getMagnitude();
 		if(magnitude>=THRESHOLD_LIGHT) {
-			pg.rect(x, y, d+5, d+5);
+			d = d+5;
+			pg.rect(x, y, d, d);
 			if(magnitude>=THRESHOLD_MODERATE) {
-				pg.rect(x, y, d+10, d+10);
+				d = d +10;
+				pg.rect(x, y, d, d);
 			}
 		} else {
 			pg.rect(x, y, d, d);}
-
+		if(getAge().equals("Past Day")){
+			pg.line(x,y,x+d,y+d);
+			pg.line(x,y+d,x+d,y);
+		}
 
 
 		// TODO: Implement this method

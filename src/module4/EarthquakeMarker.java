@@ -1,5 +1,6 @@
 package module4;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import processing.core.PGraphics;
@@ -101,8 +102,14 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		return Float.parseFloat(getProperty("magnitude").toString());
 	}
 
-	public float getAge() {
-		return Float.parseFloat(getProperty("title").toString());
+	public String getAge() {
+
+		try 		{
+			return	properties.get("age").toString();}
+		catch (Exception e){
+			return null;
+		}
+
 	}
 	
 	public float getDepth() {
