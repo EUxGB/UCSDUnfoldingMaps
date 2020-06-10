@@ -144,9 +144,24 @@ public class EarthquakeCityMap extends PApplet {
 	// set the lastSelected to be the first marker found under the cursor
 	// Make sure you do not select two markers.
 	// 
-	private void selectMarkerIfHover(List<Marker> markers)
-	{
-		boolean b = isInside(this, mouseX, mouseY);
+	private void selectMarkerIfHover(List<Marker> markers) {
+
+		for (Marker marker : markers) {
+
+			if (marker.isInside(map, mouseX, mouseY)){
+				marker.setSelected(true);
+
+				System.out.println(marker.isSelected());
+//				if (marker.isSelected()){
+//					lastSelected.setSelected(true);
+//					System.out.println(marker.getLocation());
+//
+//
+//				}
+
+			}
+
+		}
 		// TODO: Implement this method
 	}
 

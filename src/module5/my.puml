@@ -1,6 +1,15 @@
 @startuml
 
 abstract class AbstractMarker
+abstract class CommonMarker{
+public CommonMarker(Location location)
+public CommonMarker(Location location, java.util.HashMap<java.lang.String,java.lang.Object> properties)
+boolean getClicked()
+void setClicked(boolean state)
+void draw(PGraphics pg, float x, float y)
+abstract void drawMarker(PGraphics pg, float x, float y)
+abstract void showTitle(PGraphics pg, float x, float y)
+}
 
 class SimplePointMarker
 
@@ -41,10 +50,10 @@ boolean isLand(PointFeature earthquake)
 void printQuakes()
 boolean isInCountry(PointFeature earthquake, Marker country)
 }
-
+CommonMarker <-- SimplePointMarker
 SimplePointMarker <--AbstractMarker
-CityMarker <-- SimplePointMarker
-EarthquakeMarker <-- SimplePointMarker
+CityMarker <-- CommonMarker
+EarthquakeMarker <-- CommonMarker
 LandQuakeMarker <-- EarthquakeMarker
 OceanQuakeMarker <-- EarthquakeMarker
 EarthquakeCityMap <-- PApplet

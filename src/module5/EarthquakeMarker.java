@@ -93,6 +93,9 @@ public abstract class EarthquakeMarker extends CommonMarker
 	@Override
 	public void showTitle(PGraphics pg, float x, float y)
 	{
+		if (){
+
+		}
 		// TODO: Implement this method
 		
 	}
