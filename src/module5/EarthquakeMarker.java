@@ -11,7 +11,7 @@ import processing.core.PGraphics;
  */
 public abstract class EarthquakeMarker extends CommonMarker
 {
-	
+
 	// Did the earthquake occur on land?  This will be set by the subclasses.
 	protected boolean isOnLand;
 
@@ -93,14 +93,17 @@ public abstract class EarthquakeMarker extends CommonMarker
 	@Override
 	public void showTitle(PGraphics pg, float x, float y)
 	{
-		if (){
+		if (selected){
+            pg.fill(0);
+            pg.textSize(16);
 
+            pg.text(getTitle(),x+20,y-10,100,200);
 		}
 		// TODO: Implement this method
 		
 	}
 
-	
+
 	/**
 	 * Return the "threat circle" radius, or distance up to 
 	 * which this earthquake can affect things, for this earthquake.   

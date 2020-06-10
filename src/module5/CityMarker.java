@@ -52,7 +52,12 @@ public class CityMarker extends CommonMarker {
 	/** Show the title of the city if this marker is selected */
 	public void showTitle(PGraphics pg, float x, float y)
 	{
-		
+		if (selected){
+			pg.fill(0);
+			pg.textSize(16);
+
+			pg.text(getCity(),x+10,y-10,100,200);
+		}
 		// TODO: Implement this method
 	}
 	

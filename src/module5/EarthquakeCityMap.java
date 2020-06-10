@@ -150,17 +150,9 @@ public class EarthquakeCityMap extends PApplet {
 
 			if (marker.isInside(map, mouseX, mouseY)){
 				marker.setSelected(true);
-
-				System.out.println(marker.isSelected());
-//				if (marker.isSelected()){
-//					lastSelected.setSelected(true);
-//					System.out.println(marker.getLocation());
-//
-//
-//				}
-
-			}
-
+                lastSelected =  (CommonMarker) marker;
+                break;
+            }
 		}
 		// TODO: Implement this method
 	}
@@ -173,6 +165,29 @@ public class EarthquakeCityMap extends PApplet {
 	@Override
 	public void mouseClicked()
 	{
+        if (lastClicked != null) {
+            unhideMarkers();
+            lastClicked = null;
+
+        }
+        lastClicked = lastSelected;
+		if (lastClicked instanceof CityMarker){
+			text(((CityMarker) lastClicked).getPopulation(),mouseX,mouseY);
+			System.out.println(((CityMarker) lastClicked).getPopulation());}
+		if (lastClicked instanceof EarthquakeMarker) System.out.println(((EarthquakeMarker) lastClicked).getRadius());
+		// selectMarkerIfHover(cityMarkers);
+
+
+       // System.out.println(lastClicked);
+//	    if(cl)
+//        for (Marker e :quakeMarkers)
+//
+//
+//                cityMarkers
+//        selectMarkerIfHover(quakeMarkers);
+//        selectMarkerIfHover(cityMarkers);
+//
+//	    unhideMarkers();
 		// TODO: Implement this method
 		// Hint: You probably want a helper method or two to keep this code
 		// from getting too long/disorganized
