@@ -170,11 +170,18 @@ public class EarthquakeCityMap extends PApplet {
             lastClicked = null;
 
         }
-        lastClicked = lastSelected;
-		if (lastClicked instanceof CityMarker){
-			text(((CityMarker) lastClicked).getPopulation(),mouseX,mouseY);
-			System.out.println(((CityMarker) lastClicked).getPopulation());}
-		if (lastClicked instanceof EarthquakeMarker) System.out.println(((EarthquakeMarker) lastClicked).getRadius());
+
+		markerClicked(cityMarkers);
+		markerClicked(quakeMarkers);
+
+
+        //lastSelected.setSelected(false);
+		//lastSelected = null;
+
+//		if (lastClicked instanceof CityMarker){
+			//text(((CityMarker) lastClicked).getPopulation(),mouseX,mouseY);
+//			System.out.println(((CityMarker) lastClicked).getPopulation());}
+//		if (lastClicked instanceof EarthquakeMarker) System.out.println(((EarthquakeMarker) lastClicked).getRadius());
 		// selectMarkerIfHover(cityMarkers);
 
 
@@ -192,7 +199,46 @@ public class EarthquakeCityMap extends PApplet {
 		// Hint: You probably want a helper method or two to keep this code
 		// from getting too long/disorganized
 	}
-	
+
+	private void markerClicked(List<Marker> markers) {
+
+		for (Marker marker : markers) {
+			if (marker.isInside(map, mouseX, mouseY)) {
+				hideMarkers();
+				marker.setHidden(false);
+				marker.isSelected();
+				lastClicked= (CommonMarker) marker;
+				lastClicked.setClicked(true);
+
+				if (marker instanceof EarthquakeMarker){
+					double radius =  ((EarthquakeMarker) marker).threatCircle();
+					for (Marker city : cityMarkers){
+					if ((double)(marker.getDistanceTo(city.getLocation()))<= radius ) {
+						city.setHidden(false);
+						System.out.println(radius + "==" + marker.getDistanceTo(city.getLocation()));
+					}
+					}
+				}
+
+				if (marker instanceof CityMarker){
+
+					for (Marker earthquake  : quakeMarkers){
+						double radius = (EarthquakeMarker) earthquake.;
+					if ((double)(marker.getDistanceTo(earthquake.getLocation()))<= radius ) {
+						earthquake.setHidden(false);
+						System.out.println(radius + "==" + marker.getDistanceTo(earthquake.getLocation()));
+					}
+					}
+				}
+
+
+				break;
+			}
+		}
+
+
+	}
+
 	
 	// loop over and unhide all markers
 	private void unhideMarkers() {
@@ -204,7 +250,16 @@ public class EarthquakeCityMap extends PApplet {
 			marker.setHidden(false);
 		}
 	}
-	
+	private void hideMarkers() {
+		for(Marker marker : quakeMarkers) {
+			marker.setHidden(true);
+		}
+
+		for(Marker marker : cityMarkers) {
+			marker.setHidden(true);
+		}
+	}
+
 	// helper method to draw key in GUI
 	private void addKey() {	
 		// Remember you can use Processing's graphics methods here

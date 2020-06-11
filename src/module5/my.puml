@@ -1,5 +1,5 @@
 @startuml
-
+class Object
 abstract class AbstractMarker
 abstract class CommonMarker{
 public CommonMarker(Location location)
@@ -19,6 +19,8 @@ void draw(PGraphics pg, float x, float y)
 String getCity()
 String getCountry()
 float getPopulation()
+void drawMarker(PGraphics pg, float x, float y)
+void showTitle(PGraphics pg, float x, float y)
 }
 
 abstract class EarthquakeMarker{
@@ -30,6 +32,8 @@ void colorDetermine(PGraphics pg)
  String getTitle()
  float getRadius()
  boolean isOnLand()
+ void drawMarker(PGraphics pg, float x, float y)
+ void showTitle(PGraphics pg, float x, float y)
 }
 
 class LandQuakeMarker{
@@ -49,6 +53,10 @@ void draw()
 boolean isLand(PointFeature earthquake)
 void printQuakes()
 boolean isInCountry(PointFeature earthquake, Marker country)
+void mouseMoved()
+void mouseClicked()
+void selectMarkerIfHover(List<Marker> markers)
+void unhideMarkers()
 }
 CommonMarker <-- SimplePointMarker
 SimplePointMarker <--AbstractMarker
@@ -57,5 +65,6 @@ EarthquakeMarker <-- CommonMarker
 LandQuakeMarker <-- EarthquakeMarker
 OceanQuakeMarker <-- EarthquakeMarker
 EarthquakeCityMap <-- PApplet
+AbstractMarker <--Object
 
 @enduml
