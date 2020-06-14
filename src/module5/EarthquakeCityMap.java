@@ -221,12 +221,14 @@ public class EarthquakeCityMap extends PApplet {
 				}
 
 				if (marker instanceof CityMarker){
+                    double radius;
+                    ((CityMarker) marker).getCity();
 
-					for (Marker earthquake  : quakeMarkers){
-						double radius = (EarthquakeMarker) earthquake.;
-					if ((double)(marker.getDistanceTo(earthquake.getLocation()))<= radius ) {
+                    for (Marker earthquake  : quakeMarkers){
+                        System.out.println(earthquake.getStringProperty("country"));
+                        if (false) {
 						earthquake.setHidden(false);
-						System.out.println(radius + "==" + marker.getDistanceTo(earthquake.getLocation()));
+						//System.out.println(radius + "==" + marker.getDistanceTo(earthquake.getLocation()));
 					}
 					}
 				}

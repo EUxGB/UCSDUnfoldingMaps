@@ -24,7 +24,8 @@ public class CityMarker extends CommonMarker {
 		super(location);
 	}
 	
-	
+
+
 	public CityMarker(Feature city) {
 		super(((PointFeature)city).getLocation(), city.getProperties());
 		// Cities have properties: "name" (city name), "country" (country name)
