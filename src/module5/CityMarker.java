@@ -59,6 +59,7 @@ public class CityMarker extends CommonMarker {
 			pg.text(getCity()+" Pop " + population + " Million",
 					x+10,y-10,100,200);
 
+
 		}
 		// TODO: Implement this method
 

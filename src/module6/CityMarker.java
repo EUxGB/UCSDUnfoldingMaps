@@ -14,7 +14,8 @@ import processing.core.PGraphics;
 public class CityMarker extends CommonMarker {
 	
 	public static int TRI_SIZE = 5;  // The size of the triangle marker
-	
+
+
 	public CityMarker(Location location) {
 		super(location);
 	}
@@ -66,7 +67,7 @@ public class CityMarker extends CommonMarker {
 		pg.textAlign(PConstants.LEFT, PConstants.TOP);
 		pg.text(name, x+3, y-TRI_SIZE-33);
 		pg.text(pop, x+3, y - TRI_SIZE -18);
-		
+
 		pg.popStyle();
 	}
 	

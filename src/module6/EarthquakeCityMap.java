@@ -51,7 +51,8 @@ public class EarthquakeCityMap extends PApplet {
 	// The files containing city names and info and country names and info
 	private String cityFile = "city-data.json";
 	private String countryFile = "countries.geo.json";
-	
+	private String airPorts = "airports.dat";
+
 	// The map
 	private UnfoldingMap map;
 	
@@ -59,6 +60,8 @@ public class EarthquakeCityMap extends PApplet {
 	private List<Marker> cityMarkers;
 	// Markers for each earthquake
 	private List<Marker> quakeMarkers;
+
+
 
 	// A List of country markers
 	private List<Marker> countryMarkers;
@@ -94,7 +97,10 @@ public class EarthquakeCityMap extends PApplet {
 	    //     STEP 1: load country features and markers
 		List<Feature> countries = GeoJSONReader.loadData(this, countryFile);
 		countryMarkers = MapUtils.createSimpleMarkers(countries);
-		
+
+
+
+
 		//     STEP 2: read in city data
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
 		cityMarkers = new ArrayList<Marker>();
@@ -119,7 +125,7 @@ public class EarthquakeCityMap extends PApplet {
 
 	    // could be used for debugging
 	    printQuakes();
-	    sortAndPrint(15);
+	    sortAndPrint(1);
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -378,10 +384,10 @@ public class EarthquakeCityMap extends PApplet {
 			}
 			if (numQuakes > 0) {
 				totalWaterQuakes -= numQuakes;
-				System.out.println(countryName + ": " + numQuakes);
+				// mycommit System.out.println(countryName + ": " + numQuakes);
 			}
 		}
-		System.out.println("OCEAN QUAKES: " + totalWaterQuakes);
+		// mycommit System.out.println("OCEAN QUAKES: " + totalWaterQuakes);
 	}
 	
 	
